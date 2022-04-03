@@ -3,8 +3,10 @@ using ProductAPI.Constants;
 using ProductAPI.Data;
 using ProductAPI.Data.Entities;
 using ProductAPI.Data.Repositories;
+using ProductAPI.Domain.Enum;
 using ProductAPI.Domain.Models;
 using ProductAPI.Domain.Response;
+using ProductAPI.Extrensions;
 
 namespace ProductAPI.Services.Products
 {
@@ -80,6 +82,7 @@ namespace ProductAPI.Services.Products
             _productRepository.Update(productFound);
             await _unitOfWork.CommitAsync();
 
+            productModel.TypeName = EnumExtensions.ToDescription((ProductType)productModel.TypeId);
             return ApiResponseFactory.CreateSuccess(productModel);
         }
 
