@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProductAPI</name>
+    </assembly>
+    <members>
+        <member name="M:ProductAPI.Controllers.ProductsController.GetProducts">
+            <summary>
+            Returns all the products.
+            Example url: .../api/products with HttpGet request
+            </summary>
+            <returns>List of Products</returns>
+        </member>
+        <member name="M:ProductAPI.Controllers.ProductsController.GetProduct(System.Int32)">
+            <summary>
+            Returns the Product with the given Id
+            url= .../api/products/1 with HttpGet request
+            </summary>
+            <param name="id">id of the Product</param>
+            <returns>If resource exists then 200-OK with Product info is returned, else 404-Not Found is returned</returns>
+        </member>
+        <member name="M:ProductAPI.Controllers.ProductsController.AddProduct(ProductAPI.Domain.Models.AddProductModel)">
+            <summary>
+            Adds a Product.
+            Example url: .../api/products with HttpPost request
+            </summary>
+            <param name="addProductModel">The model which contains the new Product properties</param>
+            <returns>If resource is added then 201-Created with newly added Product info is returned, else 409-Conflict is returned</returns>
+        </member>
+        <member name="M:ProductAPI.Controllers.ProductsController.UpdateProduct(System.Int32,ProductAPI.Domain.Models.ProductModel)">
+            <summary>
+            Updates the Product.
+            Example url: .../api/products/3 with HttpPut request
+            </summary>
+            <param name="id">id of the Product</param>
+            <param name="product">The model which contains Product properties to update</param>
+            <returns>If resource is updated then 201-Created with updated Product info is returned, else if not found 404-Not Found is returned, else 409-Conflict is returned</returns>
+        </member>
+        <member name="M:ProductAPI.Controllers.ProductsController.DeleteProduct(System.Int32)">
+            <summary>
+            Deletes the Product.
+            Example url: .../api/products/2 with HttpDelete request
+            </summary>
+            <param name="id">id of the Product</param>
+            <returns>If resource exists and deletion is successful then 204-No Content is returned else 404-Not Found is returned</returns>
+        </member>
+    </members>
+</doc>

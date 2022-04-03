@@ -18,7 +18,7 @@ namespace ProductAPI.Controllers
 
         /// <summary>
         /// Returns all the products.
-        /// url= .../api/products
+        /// Example url: .../api/products with HttpGet request
         /// </summary>
         /// <returns>List of Products</returns>
         [HttpGet]
@@ -30,10 +30,10 @@ namespace ProductAPI.Controllers
 
         /// <summary>
         /// Returns the Product with the given Id
-        /// url= .../api/products/1
+        /// url= .../api/products/1 with HttpGet request
         /// </summary>
         /// <param name="id">id of the Product</param>
-        /// <returns>Product</returns>
+        /// <returns>If resource exists then 200-OK with Product info is returned, else 404-Not Found is returned</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductModel>> GetProduct(int id)
         {
@@ -45,11 +45,11 @@ namespace ProductAPI.Controllers
         }
 
         /// <summary>
-        /// Adds a Product
-        /// url= .../api/products
+        /// Adds a Product.
+        /// Example url: .../api/products with HttpPost request
         /// </summary>
         /// <param name="addProductModel">The model which contains the new Product properties</param>
-        /// <returns>Newly added Product</returns>
+        /// <returns>If resource is added then 201-Created with newly added Product info is returned, else 409-Conflict is returned</returns>
         [HttpPost]
         public async Task<ActionResult<ProductModel>> AddProduct(AddProductModel addProductModel)
         {
@@ -68,12 +68,12 @@ namespace ProductAPI.Controllers
         }
 
         /// <summary>
-        /// Updates the Product
-        /// url= .../api/products/3
+        /// Updates the Product.
+        /// Example url: .../api/products/3 with HttpPut request
         /// </summary>
         /// <param name="id">id of the Product</param>
         /// <param name="product">The model which contains Product properties to update</param>
-        /// <returns>Updated Product</returns>
+        /// <returns>If resource is updated then 201-Created with updated Product info is returned, else if not found 404-Not Found is returned, else 409-Conflict is returned</returns>
         [HttpPut("{id}")]
         public async Task<ActionResult<ProductModel>> UpdateProduct(int id, ProductModel product)
         {
@@ -99,11 +99,11 @@ namespace ProductAPI.Controllers
         }
 
         /// <summary>
-        /// Deletes the Product
-        /// url= .../api/products/2
+        /// Deletes the Product.
+        /// Example url: .../api/products/2 with HttpDelete request
         /// </summary>
         /// <param name="id">id of the Product</param>
-        /// <returns>Http Status Code of 204 or 404</returns>
+        /// <returns>If resource exists and deletion is successful then 204-No Content is returned else 404-Not Found is returned</returns>
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteProduct(int id)
         {

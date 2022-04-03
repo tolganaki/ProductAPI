@@ -3,6 +3,7 @@ using ProductAPI.Data;
 using ProductAPI.Data.Contexts;
 using ProductAPI.Data.Repositories;
 using ProductAPI.Services.Products;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,12 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(q =>
+{
+    var xmlFile = "ProductAPI.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    q.IncludeXmlComments(xmlPath);
+});
 
 builder.Services.AddDbContext<AplicationDbContext>(options =>
 {

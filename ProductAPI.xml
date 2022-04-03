@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProductAPI</name>
+    </assembly>
+    <members>
+        <member name="M:ProductAPI.Controllers.ProductsController.GetProducts">
+            <summary>
+            Returns all the products.
+            Example url: .../api/products
+            </summary>
+            <returns>List of Products</returns>
+        </member>
+        <member name="M:ProductAPI.Controllers.ProductsController.GetProduct(System.Int32)">
+            <summary>
+            Returns the Product with the given Id
+            url= .../api/products/1
+            </summary>
+            <param name="id">id of the Product</param>
+            <returns>If resource exists then (200) OK with Product info, else (404) Not Found</returns>
+        </member>
+        <member name="M:ProductAPI.Controllers.ProductsController.AddProduct(ProductAPI.Domain.Models.AddProductModel)">
+            <summary>
+            Adds a Product.
+            Example url: .../api/products
+            </summary>
+            <param name="addProductModel">The model which contains the new Product properties</param>
+            <returns>If resource is added then (201) Created with newly added Product info, else (409) Conflict</returns>
+        </member>
+        <member name="M:ProductAPI.Controllers.ProductsController.UpdateProduct(System.Int32,ProductAPI.Domain.Models.ProductModel)">
+            <summary>
+            Updates the Product.
+            Example url: .../api/products/3
+            </summary>
+            <param name="id">id of the Product</param>
+            <param name="product">The model which contains Product properties to update</param>
+            <returns>If resource is updated then (201) Created with updated Product info, else if not found (404) Not Found, else (409) Conflict</returns>
+        </member>
+        <member name="M:ProductAPI.Controllers.ProductsController.DeleteProduct(System.Int32)">
+            <summary>
+            Deletes the Product.
+            Example url: .../api/products/2
+            </summary>
+            <param name="id">id of the Product</param>
+            <returns>If resource exists and deletion is successful then 204 No Content else (404) Not Found</returns>
+        </member>
+    </members>
+</doc>
