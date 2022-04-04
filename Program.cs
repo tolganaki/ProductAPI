@@ -5,7 +5,6 @@ using ProductAPI.Data.Contexts;
 using ProductAPI.Data.Repositories;
 using ProductAPI.Services.Products;
 using System.Net;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
