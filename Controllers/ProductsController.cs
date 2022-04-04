@@ -53,12 +53,12 @@ namespace ProductAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<ProductModel>> AddProduct(AddProductModel addProductModel)
         {
+            addProductModel.Name = addProductModel.Name.Trim();
+            addProductModel.Category = addProductModel.Category.Trim();
+
             var validationErrors = ValidatorFactory.GetProductsValidator().ValidateAddProduct(addProductModel);
             if (validationErrors.Length > 0)
                 return BadRequest(validationErrors);
-
-            addProductModel.Name = addProductModel.Name.Trim();
-            addProductModel.Category = addProductModel.Category.Trim();
 
             var response = await _productService.AddProduct(addProductModel);
             if (response.Success)
@@ -77,16 +77,14 @@ namespace ProductAPI.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<ProductModel>> UpdateProduct(int id, ProductModel product)
         {
+            product.Name = product.Name.Trim();
+            product.Category = product.Category.Trim();
+
             var validationErrors = ValidatorFactory.GetProductsValidator().ValidateUpdateProduct(product);
             if (validationErrors.Length > 0)
                 return BadRequest(validationErrors);
 
-            product.Id = id;
-            product.Name = product.Name.Trim();
-            product.Category = product.Category.Trim();
-
             var response = await _productService.UpdateProduct(product);
-
             if (response.Success)
                 return CreatedAtAction(nameof(UpdateProduct), response.Data);
             else
