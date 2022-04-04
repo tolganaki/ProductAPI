@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using ProductAPI.Data;
 using ProductAPI.Data.Contexts;
 using ProductAPI.Data.Repositories;
 using ProductAPI.Services.Products;
+using System.Net;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -59,5 +61,22 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseExceptionHandler(
+    options =>
+    {
+        options.Run(async context =>
+        {
+            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            context.Response.ContentType = "application/json";
+            var exceptionObject = context.Features.Get<IExceptionHandlerFeature>();
+            if (null != exceptionObject)
+            {
+                var errorMessage = $"{exceptionObject.Error.Message}";
+                await context.Response.WriteAsync(errorMessage).ConfigureAwait(false);
+            }
+        });
+    }
+);
 
 app.Run();
