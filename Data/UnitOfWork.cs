@@ -21,7 +21,7 @@ namespace ProductAPI.Data
             }
             catch (Exception ex)
             {
-                _logger.LogError(0, ex, "Error while saving changes to DbContrxt");
+                _logger.LogError(0, ex, "Error while saving changes to DbContext");
                 throw;
             }
         }
