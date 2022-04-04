@@ -80,7 +80,7 @@ namespace ProductAPI.Services.Products
             _productRepository.Update(productFound);
             await _unitOfWork.CommitAsync();
 
-            productModel = _mapper.Map<ProductModel>(product);
+            productModel = _mapper.Map<ProductModel>(productFound);
             return ApiResponseFactory.CreateSuccess(productModel);
         }
 
