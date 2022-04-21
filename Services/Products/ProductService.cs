@@ -59,9 +59,7 @@ namespace ProductAPI.Services.Products
 
         public async Task<ApiResponse<ProductModel>> UpdateProduct(ProductModel productModel)
         {
-            var product = _mapper.Map<Product>(productModel);
-
-            var productFound = await _productRepository.FindByIdAsync(product.Id);
+            var productFound = await _productRepository.FindByIdAsync(productModel.Id);
             if (productFound == null)
             {
                 return ApiResponseFactory.CreateError<ProductModel>(MessageConstants.PRODUCT_NOT_FOUND);
@@ -73,9 +71,9 @@ namespace ProductAPI.Services.Products
                 return ApiResponseFactory.CreateError<ProductModel>(MessageConstants.ANOTHER_PRODUCT_WITH_SAME_NAME_EXISTS, nameof(MessageConstants.ANOTHER_PRODUCT_WITH_SAME_NAME_EXISTS));
             }
 
-            productFound.Name = product.Name;
-            productFound.TypeId = product.TypeId;
-            productFound.Category = product.Category;
+            productFound.Name = productModel.Name;
+            productFound.TypeId = productModel.TypeId;
+            productFound.Category = productModel.Category;
 
             _productRepository.Update(productFound);
             await _unitOfWork.CommitAsync();
